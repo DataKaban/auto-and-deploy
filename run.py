@@ -7,6 +7,7 @@ import configparser
 from datetime import datetime, timedelta
 import time
 import yfinance as yf
+import requests
 
 from pgdb import PGDatabase
 
@@ -31,6 +32,7 @@ else:
 # Загрузка данных из yahoo finance.
 
 historical_d = {}
+PROXY_URL = "socks5://192.168.1.122:1080" # Замени на свой реальный адрес
 
 for company in COMPANIES:
     historical_d[company] = yf.download(
