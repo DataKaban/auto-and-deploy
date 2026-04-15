@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import configparser
 from datetime import datetime, timedelta
+import time
 import yfinance as yf
 
 from pgdb import PGDatabase
@@ -36,8 +37,10 @@ for company in COMPANIES:
         company,
         start=(datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d"),
         end=datetime.today().strftime("%Y-%m-%d"),
+        timeout=10
     ).reset_index()
     print(historical_d[company])
+    time.sleep(5)
 
 # Загрузка данных о продажах в базу данных PostgreSQL    
 database = PGDatabase(
