@@ -42,7 +42,7 @@ for company in COMPANIES:
         timeout=10
     ).reset_index()
     print(historical_d[company])
-    time.sleep(5)
+
 
 # Загрузка данных о продажах в базу данных PostgreSQL    
 database = PGDatabase(
