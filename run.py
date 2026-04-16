@@ -22,7 +22,7 @@ DATABASE_CREDS = config['Database']
 
 #проверяем существует ли файл с данными о продажах, если да, то обрабатываем его и загружаем в базу данных, если нет, то выводим сообщение об ошибке.
 full_sales_path = os.path.join(dirname, SALES_PATH)
-if os.path.exists(SALES_PATH):
+if os.path.exists(full_sales_path):
     sales_df = pd.read_csv(full_sales_path)    
     print('Данные о продажах успешно загружены:')
     os.remove(full_sales_path) # удаляем файл после обработки, чтобы не обрабатывать его повторно при следующем запуске. 
