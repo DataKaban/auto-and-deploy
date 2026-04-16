@@ -6,10 +6,13 @@ from datetime import datetime, timedelta
 import pandas as pd
 import configparser
 from random import randint 
+import os
+
+dirname = os.path.dirname(__file__)
 
 # создаем список акций
 config = configparser.ConfigParser() # создаем объект для чтения конфигурационного файла
-config.read('config.ini')
+config.read(os.path.join(dirname, 'config.ini'))
 COMPANIES = eval(config['Companies']['COMPANIES'])
 
 
@@ -29,5 +32,5 @@ if 1 <= today.weekday() <= 5:
         }
 
 df = pd.DataFrame(d)
-df.to_csv('sales-data.csv', index=False)
+df.to_csv(os.path.join(dirname, 'sales-data.csv'), index=False)
 
