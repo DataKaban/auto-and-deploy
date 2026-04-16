@@ -11,9 +11,11 @@ import requests
 
 from pgdb import PGDatabase
 
+dirname = os.path.dirname(__file__)
+
 
 config = configparser.ConfigParser() # создаем объект для чтения конфигурационного файла
-config.read('config.ini')
+config.read(os.path.join(dirname, 'config.ini'))
 SALES_PATH = config['Files']['SALES_PATH']
 COMPANIES = eval(config['Companies']['COMPANIES'])
 DATABASE_CREDS = config['Database']
@@ -32,7 +34,7 @@ else:
 # Загрузка данных из yahoo finance.
 
 historical_d = {}
-PROXY_URL = "socks5://192.168.1.122:1080" # Замени на свой реальный адрес
+PROXY_URL = "socks5://192.168.1.122:1080" # Прописываем прокси Psiphon
 
 for company in COMPANIES:
     historical_d[company] = yf.download(
